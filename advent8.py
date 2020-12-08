@@ -638,7 +638,7 @@ jmp +1"""
 
 
 def execute_instruction(index, acc, instructions, sequence):
-    if(index > len(instructions.keys()) - 1 ):
+    if index > len(instructions.keys()) - 1:
         return acc
     instruction = instructions[index]
     instructions[index]["sequence"] = sequence
@@ -679,7 +679,7 @@ if __name__ == '__main__':
         }
     try_index = 0
     changed_instructions = deepcopy(instructions)
-    while(try_index < len(instructions.keys())):
+    while try_index < len(instructions.keys()):
         try:
             print(execute_instruction(0, 0, changed_instructions, 1))
             break
@@ -687,9 +687,6 @@ if __name__ == '__main__':
             changed_instructions = deepcopy(instructions)
             if instructions[try_index]["op"] in ("nop", "jmp"):
                 changed_instructions[try_index]["op"] = "nop" if instructions[try_index]["op"] == "jmp" else "jmp"
-                try_index += 1
-                continue
-            else:
-                try_index +=1
-                continue
+            try_index +=1
+            continue
 
