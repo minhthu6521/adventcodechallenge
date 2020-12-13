@@ -23,19 +23,6 @@ def find_largest(buses):
     return largest, largest_index
 
 
-def part2(buses, i=1):
-    largest_bus, largest_index = find_largest(buses)
-    while True:
-        timestamp = largest_bus * i
-        occured = True
-        for index, bus in enumerate(buses):
-            if bus != "x" and (timestamp - largest_index + index) % int(bus) != 0:
-                occured = False
-        if occured:
-            return timestamp - largest_index
-        i += 1
-
-
 def find_match(pair, iteration, start):
     while start < (iteration * pair[0]):
         start = start + iteration
@@ -43,7 +30,7 @@ def find_match(pair, iteration, start):
             return start
 
 
-def part2_test(buses):
+def part2(buses):
     to_pair = []
     for index, bus in enumerate(buses):
         if bus != "x":
@@ -63,4 +50,4 @@ if __name__ == '__main__':
     buses = buses.split(",")
     # bus, time = part1(possible_depart_time, buses)
     # print(bus * (time - possible_depart_time))
-    print(part2_test(buses))
+    print(part2(buses))
